@@ -1,0 +1,46 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    color: #1A2F38; 
+    text-align: center;
+}
+
+html, body{
+    background-color: #C2E3E8; 
+}
+
+.container-main{
+    border: 7px solid #FFFFFF; 
+    border-radius: 50px;
+    margin: 2rem;
+    background-color: #F0F4F5; 
+}
+
+nav, section, footer, aside, article{
+    border: 4px solid #C2E3E8; 
+    margin: 1rem;
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: #FFFFFF;
+}
+
+article, aside{
+    width: 40%;
+    display: inline-flex;
+    height: 300px;
+    align-items: center;
+    justify-content: center;
+}
+
+nav, footer, section{
+    /* Color principal: Azul petróleo (Variante) */
+    background-color: #3B6E82; 
+    /* Texto en blanco para que se lea bien sobre el azul fuerte */
+    color: #FFFFFF; 
+}
+
+/* Asegurar que el texto dentro de nav, footer y section sea blanco */
+nav *, footer *, section * {
+    color: #FFFFFF;
+}

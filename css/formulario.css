@@ -1,9 +1,7 @@
-
-/* Paleta de Colores Azulada */
 :root {
-    --azul-fuerte: #3B6E82;    /* Tono para títulos y botones */
-    --azul-claro: #C2E3E8;     /* Fondo de la página */
-    --azul-borde: #A8D1D8;     /* Bordes de los inputs */
+    --azul-fuerte: #3B6E82;    
+    --azul-claro: #C2E3E8;     
+    --azul-borde: #A8D1D8;     
     --texto: #1A2F38;
     --blanco: #FFFFFF;
 }
@@ -21,14 +19,14 @@ body {
 .container {
     background-color: var(--blanco);
     width: 90%;
-    max-width: 450px; /* Tamaño ideal: ni muy chico ni muy grande */
+    max-width: 450px; 
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     border-top: 6px solid var(--azul-fuerte);
 }
 
-/* Estilo para el texto explicativo de arriba */
+
 .container p {
     font-size: 13px;
     color: #666;
@@ -52,7 +50,7 @@ input[type="number"] {
     margin-bottom: 15px;
     border: 2px solid var(--azul-borde);
     border-radius: 6px;
-    box-sizing: border-box; /* Evita que se salga del contenedor */
+    box-sizing: border-box; 
 }
 
 input:focus {
@@ -60,7 +58,7 @@ input:focus {
     border-color: var(--azul-fuerte);
 }
 
-/* Botones alineados y juntos */
+
 input[type="submit"], 
 input[type="reset"] {
     padding: 12px;
@@ -74,7 +72,7 @@ input[type="reset"] {
 input[type="submit"] {
     background-color: var(--azul-fuerte);
     color: white;
-    width: 65%; /* Más ancho para resaltar */
+    width: 65%; 
 }
 
 input[type="reset"] {
@@ -87,7 +85,7 @@ input[type="submit"]:hover {
     background-color: var(--texto);
 }
 
-/* LA SOLUCIÓN AL ENLACE: Estilo para que no quede afuera */
+
 a {
     display: block;
     text-align: center;
@@ -97,7 +95,7 @@ a {
     font-weight: bold;
     font-size: 14px;
     padding-top: 15px;
-    border-top: 1px dashed var(--azul-borde); /* Una linea divisoria bonita */
+    border-top: 1px dashed var(--azul-borde); 
 }
 
 a:hover {
