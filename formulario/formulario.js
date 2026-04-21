@@ -1,38 +1,38 @@
-document.addEventListener("DOMContentLoaded", function() {
+function validar(formulario) {
+    if (formulario.nombre.value.trim().length < 3) {
+        alert("Por favor, ingresa al menos 3 caracteres en el campo nombre.");
+        formulario.nombre.focus();
+        return false;
+    }
+
+    var abcOK = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚÜabcdefghijklmnopqrstuvwxyzáéíóúü ";
+    var checkString = formulario.nombre.value;
     
-    const formulario = document.getElementById('formulario');
-
-    formulario.addEventListener('submit', function(evento) {
-        // Detenemos el envío automático para validar primero
-        evento.preventDefault();
-
-        // Obtenemos los valores de los inputs
-        const nombre = document.getElementById('nombre').value.trim();
-        const edad = document.getElementById('edad').value;
-        const email = document.getElementById('email').value.trim();
-
-        // 1. Validar Nombre (que no esté vacío y longitud mínima)
-        if (nombre.length < 3) {
-            alert("Por favor, escribe un nombre válido (mínimo 3 caracteres).");
-            return;
+    for (var i = 0; i < checkString.length; i++) {
+        var caracter = checkString.charAt(i);
+        if (abcOK.indexOf(caracter) == -1) {
+            alert("Por favor, ingresa solo letras en el campo nombre.");
+            formulario.nombre.focus();
+            return false;
         }
+    }
 
-        // 2. Validar Edad (que sea un número positivo y razonable)
-        if (edad <= 0 || edad > 120) {
-            alert("Por favor, ingresa una edad válida.");
-            return;
-        }
+    var edad = parseInt(formulario.edad.value);
+    if (isNaN(edad) || edad < 18 || edad > 99) {
+        alert("Por favor, ingresa una edad válida (entre 18 y 99 años).");
+        formulario.edad.focus();
+        return false;
+    }
 
-        // 3. Validar Email (usando una Expresión Regular)
-        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!regexEmail.test(email)) {
-            alert("El formato del correo electrónico no es válido.");
-            return;
-        }
+    var txtEmail = formulario.email.value;
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+    if (!re.test(txtEmail)) {
+        alert("Por favor, ingresa un correo electrónico válido.");
+        formulario.email.focus();
+        return false;
+    }
 
-        // Si todo está bien, podemos proceder
-        alert("Formulario validado con éxito. Enviando datos...");
-        
-        // Aquí podrías usar formulario.submit() si quieres enviarlo realmente
-    });
-});
+    alert("Formulario validado con éxito. Enviando datos...");
+    return true;
+}

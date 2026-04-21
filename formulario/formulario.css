@@ -1,0 +1,106 @@
+
+/* Paleta de Colores Azulada */
+:root {
+    --azul-fuerte: #3B6E82;    /* Tono para títulos y botones */
+    --azul-claro: #C2E3E8;     /* Fondo de la página */
+    --azul-borde: #A8D1D8;     /* Bordes de los inputs */
+    --texto: #1A2F38;
+    --blanco: #FFFFFF;
+}
+
+body {
+    background-color: var(--azul-claro);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: var(--blanco);
+    width: 90%;
+    max-width: 450px; /* Tamaño ideal: ni muy chico ni muy grande */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-top: 6px solid var(--azul-fuerte);
+}
+
+/* Estilo para el texto explicativo de arriba */
+.container p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+label {
+    display: block;
+    color: var(--azul-fuerte);
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+input[type="text"], 
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid var(--azul-borde);
+    border-radius: 6px;
+    box-sizing: border-box; /* Evita que se salga del contenedor */
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--azul-fuerte);
+}
+
+/* Botones alineados y juntos */
+input[type="submit"], 
+input[type="reset"] {
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+input[type="submit"] {
+    background-color: var(--azul-fuerte);
+    color: white;
+    width: 65%; /* Más ancho para resaltar */
+}
+
+input[type="reset"] {
+    background-color: #eee;
+    color: #666;
+    width: 32%;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--texto);
+}
+
+/* LA SOLUCIÓN AL ENLACE: Estilo para que no quede afuera */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: var(--azul-fuerte);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--azul-borde); /* Una linea divisoria bonita */
+}
+
+a:hover {
+    color: var(--texto);
+    text-decoration: underline;
+}

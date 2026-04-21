@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulario</title>
+    <script src="./formulario.js"></script>
+    <link rel="stylesheet" href="./formulario.css">
 </head>
 <body>
     <div class="container">
@@ -12,7 +14,7 @@
             GET: este metodo envia por medio de la URL toda la informacion del formulario a traves del navegador. Su funcion principal es obtener los datos del servicio; pero es el metodo mas vulnerable de todo devido a que se pueden generar inyecciones de codigo.
             POST: este metodo se encarga de registrar una nueva entrada al sistema, tambien utiliza la URL como envio por defecto pero su facultad es poder ocultarla, esto significa que los datos no son visibles para el usuario comun en el navegador.
 
-            <form name="formulario" method="GET" id="formulario">
+            <form name="formulario" method="GET" id="formulario" onsubmit="return validar(this)">
                 <label for="nombre">
                     Nombre:
                 </label>
@@ -33,9 +35,13 @@
                 <br>
                 <input type="text" name="email" id="email" placeholder="por favor escriba aqui su email">
                 <br>
-                <input type="submit" name="borrar" value="Borrar datos">
+                <input type="submit" name="enviar" value="Enviar registro">
+                <br>
+                <input type="reset" name="borrar" value="Borrar datos">
             </form>
         </p>
+        <a href="../">Regresar a Página Principal </a>
     </div>
+    
 </body>
 </html>
