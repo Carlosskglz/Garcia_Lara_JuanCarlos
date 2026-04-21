@@ -1,0 +1,98 @@
+CSS
+body {
+    background-color: #f4f4f9;
+    color: #1a1a1a;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    margin: 0;
+}
+
+h2 {
+    color: #3f51b5;
+    text-align: center;
+    border-bottom: 2px solid #4586a0;
+    padding-bottom: 10px;
+}
+
+fieldset {
+    border: 2px solid #50a1a0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+legend {
+    color: #50a1a0;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #3f51b5;
+}
+
+label {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    font-weight: bold;
+    color: #4586a0;
+    margin-top: 10px;
+}
+
+button {
+    width: 100%;
+    max-width: 400px;
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #50a1a0;
+}
+
+#resultado {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-left: 6px solid #a65d57;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+a {
+    color: #a65d57;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
