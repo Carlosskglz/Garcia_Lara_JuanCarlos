@@ -1,0 +1,29 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "description": "Ejemplo de crud con vainillaJS",
+  "keywords": [
+    "crud",
+    "mysql",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/Carlosskglz/Garcia_Lara_JuanCarlos#readme",
+  "bugs": {
+    "url": "https://github.com/Carlosskglz/Garcia_Lara_JuanCarlos/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carlosskglz/Garcia_Lara_JuanCarlos.git"
+  },
+  "license": "ISC",
+  "author": "carlosskglz",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mysql2": "^3.22.3"
+  }
+}
