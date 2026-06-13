@@ -579,6 +579,7 @@ async function eliminarCompra(id) {
 }
 
 
+
 // ============================================================
 // 5. NAVEGACIÓN POR PESTAÑAS
 // ============================================================
@@ -616,6 +617,10 @@ function cambiarSeccion(seccion) {
     if (seccion === 'valorant') {
         cargarAgentes();
     }
+    if (seccion === 'rangos') {
+        document.getElementById('seccion-rangos').style.display = 'block';
+        cargarRangos();
+}
 }
 
 // ============================================================
@@ -665,9 +670,8 @@ async function cargarAgentes() {
                     <td><strong>${escapeHtml(a.nombre)}</strong></td>
                     <td><span class="badge badge-neutral">${escapeHtml(a.rol)}</span></td>
                     <td>${escapeHtml(a.habilidad_definitiva)}</td>
-                    <td>
-                        <button class="btn-eliminar" onclick="confirmarEliminarAgente(${a.id}, '${escapeHtml(a.nombre)}')">Eliminar</button>
-                    </td>
+                    
+                    
                     <td>
                     <button onclick="prepararEdicionAgente(${a.id}, '${a.nombre}', '${a.rol}', '${a.habilidad_definitiva}')">Editar</button>
                     <button class="btn-eliminar" onclick="confirmarEliminarAgente(${a.id}, '${a.nombre}')">Eliminar</button>
@@ -681,7 +685,98 @@ async function cargarAgentes() {
         mostrarNotificacion('Error al cargar agentes: ' + error.message, 'error');
     }
 }
+// ============================================================
+// 8. MÓDULO DE RANGOS
+// ============================================================
+async function cargarRangos() {
+    try {
+        const resp = await fetchAPI('/api/rangos');
+        const tbody = document.getElementById('tbody-rangos');
+        const carga = document.getElementById('carga-rangos');
+        
+        if (carga) carga.style.display = 'none';
+        
+        if (resp.data.length === 0) {
+            document.getElementById('tabla-rangos').style.display = 'none';
+            if (carga) {
+                carga.textContent = 'No hay rangos registrados.';
+                carga.style.display = 'block';
+            }
+        } else {
+            document.getElementById('tabla-rangos').style.display = 'table';
+            tbody.innerHTML = resp.data.map(r => `
+                <tr>
+                    <td>${r.id}</td>
+                    <td>${escapeHtml(r.nombre)}</td>
+                    <td>${r.tier}</td>
+                    <td>${escapeHtml(r.descripcion || '')}</td>
+                    <td><button class="btn-eliminar" onclick="eliminarRango(${r.id})">Eliminar</button></td>
+                </tr>
+            `).join('');
+        }
+    } catch (error) {
+        mostrarNotificacion('Error al cargar rangos: ' + error.message, 'error');
+    }
+}
 
+async function eliminarRango(id) {
+    if (!confirm('¿Seguro que quieres eliminar este rango?')) return;
+    try {
+        await fetchAPI(`/api/rangos/${id}`, { method: 'DELETE' });
+        mostrarNotificacion('Rango eliminado', 'exito');
+        cargarRangos();
+    } catch (error) {
+        mostrarNotificacion(error.message, 'error');
+    }
+}
+
+// Asegúrate de que el formulario de rangos tenga este listener
+// Define el formulario una sola vez fuera de las funciones
+const formRango = document.getElementById('form-rango');
+
+formRango.addEventListener('submit', async (e) => {
+    e.preventDefault(); 
+    
+    // Si la validación falla, no hacemos nada más
+    if (!validarFormRango()) return;
+
+    // Deshabilitar botón para evitar doble clic
+    const btnGuardar = document.getElementById('btn-guardar-rango');
+    btnGuardar.disabled = true;
+
+    try {
+        const datos = {
+            nombre: document.getElementById('rango-nombre').value,
+            tier: document.getElementById('rango-tier').value,
+            descripcion: document.getElementById('rango-descripcion').value
+        };
+
+        const resp = await fetchAPI('/api/rangos', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(datos)
+        });
+
+        mostrarNotificacion('Rango registrado', 'exito');
+        formRango.reset(); // Limpiamos formulario
+        cargarRangos();    // Recargamos tabla
+    } catch (error) {
+        mostrarNotificacion('Error: ' + error.message, 'error');
+    } finally {
+        btnGuardar.disabled = false; // Reactivamos botón
+    }
+});
+async function eliminarRango(id) {
+    if (!confirm('¿Estás seguro de eliminar este rango?')) return;
+    
+    try {
+        await fetchAPI(`/api/rangos/${id}`, { method: 'DELETE' });
+        mostrarNotificacion('Rango eliminado correctamente', 'exito');
+        cargarRangos(); // Recarga la tabla
+    } catch (error) {
+        mostrarNotificacion('Error al eliminar: ' + error.message, 'error');
+    }
+}
 function validarFormAgente() {
     let ok = true;
     
@@ -787,4 +882,26 @@ document.getElementById('btn-cancelar-agente').addEventListener('click', () => {
     document.getElementById('form-titulo-agente').textContent = 'Agregar Agente';
     document.getElementById('btn-guardar-agente').textContent = 'Guardar';
     document.getElementById('btn-cancelar-agente').style.display = 'none';
+});
+document.getElementById('form-rango').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const nuevoRango = {
+        nombre: document.getElementById('rango-nombre').value,
+        tier: document.getElementById('rango-tier').value,
+        descripcion: document.getElementById('rango-desc').value
+    };
+
+    try {
+        await fetchAPI('/api/rangos', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(nuevoRango)
+        });
+        document.getElementById('form-rango').reset();
+        cargarRangos();
+        mostrarNotificacion('Rango agregado con éxito', 'exito');
+    } catch (error) {
+        mostrarNotificacion('Error al guardar: ' + error.message, 'error');
+    }
 });
